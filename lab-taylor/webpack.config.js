@@ -14,9 +14,9 @@ let plugins = [
   new ExtractPlugin('bundle-[hash].css'),
   new HtmlPlugin({ template: `${__dirname}/src/index.html` }),
   new DefinePlugin({
-    __DEBUG__: JSON.stringify(!production)
-  })
-]
+    __DEBUG__: JSON.stringify(!production),
+  }),
+];
 
 if (production) {
   plugins = plugins.concat([new CleanPlugin(), new UglifyPlugin()]);
@@ -26,24 +26,24 @@ module.exports = {
   plugins,
   entry: `${__dirname}/src/main.js`,
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   devtool: production ? undefined : 'eval',
   output: {
     path: `${__dirname}/build`,
     publicPath: process.env.CDN_URL,
-    filename: 'bundle-[hash].js'
+    filename: 'bundle-[hash].js',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         test: /\.scss$/,
-        loader: ExtractPlugin.extract(['css-loader','sass-loader'])
+        loader: ExtractPlugin.extract('css-loader','sass-loader'),
       },
       {
         test: /\.(woff|woff2|ttf|eot|glyph|\.svg)$/,
@@ -53,10 +53,10 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 10000,
-              name: 'font/[name].[ext]'
-            }
-          }
-        ]
+              name: 'font/[name].[ext]',
+            },
+          },
+        ],
         
       },
       {
@@ -67,10 +67,10 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 6000,
-              name: 'image/[name].[ext]'
-            }
-          }
-        ]
+              name: 'image/[name].[ext]',
+            },
+          },
+        ],
       },
       {
         test: /\.(mp3|aac|aiff|wav|flac|m4a|mp4|ogg)$/,
@@ -78,10 +78,10 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: { name: 'audio/[name].[ext]' }
-          }
-        ]
-      }
-    ]
-  }
-}
+            options: { name: 'audio/[name].[ext]' },
+          },
+        ],
+      },
+    ],
+  },
+};
