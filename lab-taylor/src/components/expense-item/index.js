@@ -12,7 +12,7 @@ class ExpenseItem extends React.Component{
     return(
       <div>
         { expenses.map( expense =>
-          <div>
+          <div key={expense.id}>
             <p>{expense.expense}</p>
             <p>{expense.cost}</p>
             <button onClick={() => expenseDelete(expense)}>X</button>
