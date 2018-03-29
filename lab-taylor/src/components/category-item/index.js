@@ -9,7 +9,7 @@ import {
   categoryUpdate,
   categoryDelete
 } from '../../actions/category-actions';
-import {expenseCreate} from '../../actions/expense-actions';
+import { expenseCreate } from '../../actions/expense-actions';
 
 import { renderIf } from '../../lib/util.js';
 
@@ -47,8 +47,8 @@ class CategoryItem extends React.Component {
       </section>
     )
   }
-
 }
+
 
 let mapDispatchToProps = dispatch => ({
   categoryUpdate: (category) => dispatch(categoryUpdate(category)),
